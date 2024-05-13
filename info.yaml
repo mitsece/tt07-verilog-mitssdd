@@ -42,7 +42,7 @@ pinout:
   uo[7]: ""
 
   # Bidirectional pins
-  uio[0]: "Sensor identifie"
+  uio[0]: "Sensor identifie" 
   uio[1]: "Sensor identifie"
   uio[2]: ""
   uio[3]: ""
