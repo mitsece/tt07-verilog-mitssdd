@@ -105,26 +105,26 @@ module fault_pro(
 				if(f1 == 0 && counter1 == 4) begin //checking whether sum of 4 data was calculated 
 					m1 <= r1 >> 2;
 					r1 <= 10'b0;
-					counter1 = 3'b0;
-					f1 = 1'b1;
+					counter1 <= 3'b0;
+					f1 <= 1'b1;
 				end
 				if(f2 == 0 && counter2 == 4) begin //checking whether sum of 4 data was calculated 
 					m2 <= r2 >> 2;
 					r2 <= 10'b0;
-					counter2 = 3'b0;
-					f2 = 1'b1;
+					counter2 <= 3'b0;
+					f2 <= 1'b1;
 				end
 				if(f3 == 0 && counter3 == 4) begin //checking whether sum of 4 data was calculated 
 					m3 <= r3 >> 2;
 					r3 <= 10'b0;
-					counter3 = 3'b0;
-					f3 = 1'b1;
+					counter3 <= 3'b0;
+					f3 <= 1'b1;
 				end
 				if(f4 == 0 && counter4 == 4) begin //checking whether sum of 4 data was calculated 
 					m4 <= r4 >> 2;
 					r4 <= 10'b0;
-					counter4 = 3'b0;
-					f4 = 1'b1;
+					counter4 <= 3'b0;
+					f4 <= 1'b1;
 				end
 				
 ////////////////////////////////////////////////////////////////////////////////				
@@ -132,32 +132,32 @@ module fault_pro(
 				if(f1 == 1 && counter1 == 4) begin //checking whether sum of 4 data was calculated 
 					w1 <= r1 >> 2;
 					r1 <= 10'b0;
-					counter1 = 3'b0;
-					f1 = 1'b0;
+					counter1 <= 3'b0;
+					f1 <= 1'b0;
 				end
 				if(f2 == 1 && counter2 == 4) begin //checking whether sum of 4 data was calculated 
 					w2 <= r2 >> 2;
 					r2 <= 10'b0;
-					counter2 = 3'b0;
-					f2 = 1'b0;
+					counter2 <= 3'b0;
+					f2 <= 1'b0;
 				end
 				if(f3 == 1 && counter3 == 4) begin //checking whether sum of 4 data was calculated 
 					w3 <= r3 >> 2;
 					r3 <= 10'b0;
-					counter3 = 3'b0;
-					f3 = 1'b0;
+					counter3 <= 3'b0;
+					f3 <= 1'b0;
 				end
 				if(f4 == 1 && counter4 == 4) begin //checking whether sum of 4 data was calculated 
 					w4 <= r4 >> 2;
 					r4 <= 10'b0;
-					counter4 = 3'b0;
-					f4 = 1'b0;
+					counter4 <= 3'b0;
+					f4 <= 1'b0;
 				end
 				
-				diff1 = (w1 > m1) ? (w1 - m1) : (m1 - w1);
-				diff2 = (w2 > m2) ? (w2 - m2) : (m2 - w2);
-				diff3 = (w3 > m3) ? (w3 - m3) : (m3 - w3);
-				diff4 = (w4 > m4) ? (w4 - m4) : (m4 - w4);
+				diff1 <= (w1 > m1) ? (w1 - m1) : (m1 - w1);
+				diff2 <= (w2 > m2) ? (w2 - m2) : (m2 - w2);
+				diff3 <= (w3 > m3) ? (w3 - m3) : (m3 - w3);
+				diff4 <= (w4 > m4) ? (w4 - m4) : (m4 - w4);
 				
 				if(diff1 >= 100) begin
 					out <= 3'b100;
