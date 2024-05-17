@@ -38,8 +38,8 @@ pinout:
   uo[3]: "Falut warning"
   uo[4]: "Sensor identifie"
   uo[5]: "Sensor identifie"
-  uo[6]: ""
-  uo[7]: ""
+  uo[6]: "Sensor identifie"
+  uo[7]: "Sensor identifie"
 
   # Bidirectional pins
   uio[0]: "Sensor identifie" 
