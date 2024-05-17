@@ -25,7 +25,7 @@ module tt_um_mitssdd (
     .reset(rst_n),
 	.r0(ui_in),
 	.check(uio_in[1:0]),
-	.Q(uo_out[0])
+	     .Q(uo_out[0]),.Q1(uo_out[7:6])
 	
 );
     fault_pro fault_pro  (
