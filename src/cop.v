@@ -36,10 +36,10 @@ always @(posedge clk or posedge reset) begin
     sense <= check;
 
             case (sense)
-                2'b00: proc = r1;
-                2'b01: proc = r2;
-                2'b10: proc = r3;
-                2'b11: proc = r4;
+                2'b00: proc <= r1;
+                2'b01: proc <= r2;
+                2'b10: proc <= r3;
+                2'b11: proc <= r4;
             endcase
 
             if (proc == data) begin
