@@ -56,7 +56,7 @@ always @(posedge clk or posedge reset) begin
                 
                     if (sense == 2'b00) begin
                         r1 <= data;
-                        Q1 <= 2'b00;
+                        Q1 <= 2'b00; 
                         end
                     if (sense == 2'b01) begin
                         r2 <= data;
