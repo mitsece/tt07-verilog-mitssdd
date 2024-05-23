@@ -7,12 +7,18 @@ module co_processor (
     output reg [1:0] Q1
 );
 
-reg [7:0] proc; // processing register
-reg [7:0] r1= 8'b0;
-reg [7:0] r2= 8'b0;
-reg [7:0] r3= 8'b0;
-reg [7:0] r4= 8'b0;
-reg [7:0] res;
+
+
+reg [7:0] proc = 8'b0; // processing register
+reg [7:0] r1 = 8'b0;
+reg [7:0] r2 = 8'b0;
+reg [7:0] r3 = 8'b0;
+reg [7:0] r4 = 8'b0;
+reg [7:0] res = 8'b0;
+reg [7:0] data = 8'b0;
+reg [1:0] sense = 2'b0;
+
+
 
 always @(posedge clk or posedge reset) begin
     if (reset) begin
@@ -21,51 +27,59 @@ always @(posedge clk or posedge reset) begin
         r3 <= 8'b0;
         r4 <= 8'b0;
         Q <= 1'b0;
-        Q1 <= 2'b0;
+		Q1 <= 2'b0;
+		data <= 8'b0;
+		sense <= 2'b0;
+		proc <= 8'b0;
     end else begin
-            case (check)
-                2'b00: proc <= r1;
-                2'b01: proc <= r2;
-                2'b10: proc <= r3;
-                2'b11: proc <= r4;
+    data <= r0;
+    sense <= check;
+
+            case (sense)
+                2'b00: proc = r1;
+                2'b01: proc = r2;
+                2'b10: proc = r3;
+                2'b11: proc = r4;
             endcase
 
-            if (proc == r0) begin
+            if (proc == data) begin
                 Q <= 1'b0;
-                Q1<= 2'b0;
+                Q1 <= 2'b00;
             end else begin
-                if (proc > r0) begin
-                    res <= proc - r0;
+                if (proc > data) begin
+                    res = proc - data;
                 end else begin
-                    res <= r0 - proc;
+                    res = data - proc;
                 end
 
                 if (res > 8'b00000010) begin
-                    case (check)
-                        2'b00: begin
-                             r1 <= r0;
-                             Q1 <=2'b00;
+                
+                    if (sense == 2'b00) begin
+                        r1 <= data;
+                        Q1 <= 2'b00;
                         end
-                         2'b01: begin
-                             r2 <= r0;
-                             Q1 <=2'b01;
+                    if (sense == 2'b01) begin
+                        r2 <= data;
+                        Q1 <= 2'b01;
                         end
-                        2'b10: begin
-                             r3 <= r0;
-                             Q1 <=2'b10;
+                    if (sense == 2'b10) begin
+                        r3 <= data;
+                        Q1 <= 2'b10;
                         end
-                        2'b11: begin  
-                             r4 <= r0;
-                             Q1 <=2'b11;
+                    if (sense == 2'b11) begin
+                        r4 <= data;
+                        Q1 <= 2'b11;
                         end
-                    endcase
+                        
                     Q <= 1'b1;
                 end else begin
                     Q <= 1'b0;
-                    Q1<=2'b0;
+                    Q1 <= 2'b00;
+                   
                 end
             end
-        end
+        
+    end
 end
 
 endmodule
