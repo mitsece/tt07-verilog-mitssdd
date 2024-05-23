@@ -47,9 +47,9 @@ always @(posedge clk or posedge reset) begin
                 Q1 <= 2'b00;
             end else begin
                 if (proc > data) begin
-                    res = proc - data;
+                    res <= proc - data;
                 end else begin
-                    res = data - proc;
+                    res <= data - proc;
                 end
 
                 if (res > 8'b00000010) begin
