@@ -30,16 +30,16 @@ always @(posedge clk or posedge reset) begin
 		Q1 <= 2'b0;
 		data <= 8'b0;
 		sense <= 2'b0;
-		proc <= 8'b0;
+		proc = 8'b0;
     end else begin
     data <= r0;
     sense <= check;
 
             case (sense)
-                2'b00: proc <= r1;
-                2'b01: proc <= r2;
-                2'b10: proc <= r3;
-                2'b11: proc <= r4;
+                2'b00: proc = r1;
+                2'b01: proc = r2;
+                2'b10: proc = r3;
+                2'b11: proc = r4;
             endcase
 
             if (proc == data) begin
@@ -47,9 +47,9 @@ always @(posedge clk or posedge reset) begin
                 Q1 <= 2'b00;
             end else begin
                 if (proc > data) begin
-                    res <= proc - data;
+                    res = proc - data;
                 end else begin
-                    res <= data - proc;
+                    res = data - proc;
                 end
 
                 if (res > 8'b00000010) begin
